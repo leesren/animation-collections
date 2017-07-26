@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body style="text-align:center">
+    <h3>文字粒子</h3>
+    <div style="padding:10px;">
+        <button onclick="show()">文字</button>
+        <button onclick="showimg()">图片</button>
+        <button onclick="wave()">波浪</button>
+    </div>
+
+    <canvas style="display: inline-block;background-color:#333;height:250px;width:100%;" id="mycanvas"></canvas>
+    <img id="img" src="data:image/svg+xml;base64,PHN2ZyBpZD0i5Zu+5bGCXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgdmlld0JveD0iMCAwIDExMy40IDI2LjYiPjxzdHlsZT4uc3QwLC5zdDF7ZmlsbDojZmZmfS5zdDF7ZmlsbC1ydWxlOmV2ZW5vZGQ7Y2xpcC1ydWxlOmV2ZW5vZGR9PC9zdHlsZT48cGF0aCBjbGFzcz0ic3QwIiBkPSJNMjQgLjRsLTguOSAxMy4xTDI0IDI2LjZoMTRWLjRIMjR6TTAgMjYuNmgxNFYuNEgwdjI2LjJ6Ii8+PHBhdGggY2xhc3M9InN0MSIgZD0iTTQ2LjggMTguOGgxLjR2Ny41aC0xLjR6bTEyLjIgMGgxLjR2Ny41SDU5em0xMi4zIDBoMS40djcuNWgtMS40eiIvPjxwYXRoIGNsYXNzPSJzdDEiIGQ9Ik01NS44IDE4LjhoNy43djEuM2gtNy43em0tLjcgNy41bC00LTMuOCAzLjktMy43aC0ybC0yLjkgMi44Yy0uMi4yLS4zLjMtLjcuM2gtMi4ydjEuM2gyLjNjLjMgMCAuNC4xLjYuMmwzIDIuOWgyem0yNC4yIDBsLTIuMS0yLjhjLjYtLjMgMS4yLS43IDEuMi0xLjZ2LTEuNGMwLTEuMS0uOC0xLjctMi4zLTEuN2gtNC45VjIwSDc2YzEgMCAxIC4yIDEgLjd2MWMwIC41LS4zLjctMSAuN2gtNC44djEuMmg0Yy41IDAgLjYuMS43LjNsMS42IDIuMmgxLjh6bTEuNy0xLjZoMS40djEuNkg4MXpNOTIuNiAyMXYzLjRjMCAxLjQgMSAxLjkgMiAxLjloNC4zYy44IDAgMS42LS42IDEuNi0xLjl2LTMuM2MwLTEuMy0uNS0yLjItMi4yLTIuMmgtMy41Yy0xLjMtLjEtMi4yLjUtMi4yIDIuMXptMS40IDMuNHYtMy42YzAtLjcuNi0uOCAxLjEtLjhIOThjLjcgMCAuOS4zLjkuOHYzLjZjMCAuNC0uMi43LS43LjdoLTMuNWMtLjMgMC0uNy0uMi0uNy0uN3ptLTI2LjctNS41djUuNmMwIC40LS4zLjctLjcuN2gtMi43Yy0uMyAwLS4zIDAtMS0uMXYxLjFjLjMuMSAxLjEuMiAxLjUuMmgyLjNjMS4yIDAgMS45LTEgMS45LTJ2LTUuNWgtMS4zem0xOS40IDEuMmgzLjJjLjUgMCAxLjIuMSAxLjIuMVYxOWMtLjctLjEtMS44LS4yLTIuMS0uMmgtMi44Yy0uOCAwLTIgLjItMiAyLjNWMjRjMCAyIDEuMSAyLjMgMiAyLjNoMy41Yy4zIDAgMS4zLS4xIDEuNS0uMlYyNXMtLjcuMS0xLjMuMWgtMy4xYy0uOSAwLTEuMS0uMy0xLjEtLjd2LTMuNWMwLS40LjEtLjggMS0uOHptMjMuMS0xLjNjLS4yIDAtLjMuMS0uNC4zIDAgMC0yIDUuMi0yIDUuMWgtLjFjMCAuMS0yLTUuMS0yLTUuMS0uMS0uMi0uMi0uMy0uNC0uM2gtMi43djcuNWgxLjR2LTYuMWguNGMuMiAwIC4yLjEuMy4ybDEuOSA1LjFjMCAuMS4xLjIuMy4yaDEuNWMuMiAwIC4zLS4xLjMtLjJsMS45LTUuMWMwLS4xLjEtLjIuMy0uMmguNHY2LjFoMS40di03LjVoLTIuNXoiLz48cGF0aCBjbGFzcz0ic3QwIiBkPSJNOTguMSAxLjloNy45Vi40aC03Ljl2MS41em01LjcgNy42aC0xLjNsLS41IDIuM2gtLjFsLS41LTIuM2gtMS4zbC41IDIuM2gtLjZWMTNoMS4ydjIuMWgxLjRWMTNoMS4ydi0xLjJoLS42bC42LTIuM3ptLTUuMi02Ljh2My45aDYuOVYyLjdoLTYuOXptNS4zIDIuNWgtMy43VjQuMWgzLjd2MS4xem0tNS44IDkuOWgxLjZWOC44aDQuN3Y2LjNoMS42VjcuNGgtNy45djcuN3ptMTUuMS0zLjRoLTEuNGwuMSAxLjloLTEuM1YxMGgyLjZWMmgtMi42VjBoLTEuNHYxLjloLTIuNHY4aDIuNHYzLjdoLTIuNHYxLjVoNi43bC0uMy0zLjR6bS0yLjYtOC4yaDEuMXY1aC0xLjF2LTV6bS0xLjQgNWgtMXYtNWgxdjV6bS0zOS41IDJoMi44djIuMUg3NHYtMi4xaDIuOHYyLjFoMS42VjMuN2gtMi45bC4zLS4xYy43LS40IDEuNS0uOSAyLjEtMS40Vi40aC05LjZ2MS41aDcuNmwtLjIuMWMtMS4xLjctMi4yIDEuMi0zLjQgMS42bC0uMy4xLS4zLTEuMUg3MGwuMyAxLjFoLTIuMnY4LjhoMS42di0yek03NCA1LjFoMi44djEuNEg3NFY1LjF6bTAgMi44aDIuOHYxLjNINzRWNy45em0tNC4zLTIuOGgyLjh2MS40aC0yLjhWNS4xem0wIDIuOGgyLjh2MS4zaC0yLjhWNy45em0tMy43LTRMNjUuNC40aC0xLjdsLjYgMy41SDY2em0uNyA4LjFWNi41aC0zLjRWOGgxLjh2My44Yy0uMi42LS41IDEtLjggMS4zLS4yLjItLjUuMy0uOS40aC0uMXYxLjZoLjFjLjktLjIgMS42LS41IDIuMS0xbC4xLS4xLjEuMWMuNy45IDEuOSAxIDIuNyAxaDEwLjl2LTEuNkg2OWMtMS43IDAtMi4zLS40LTIuMy0xLjV6bTI3LjMtLjdoLTEuN2wtLjUgMi4zaC0yLjRWOS43aDYuNFY4LjNoLTYuNFY2LjRoNC4xVjVoLTkuOHYxLjRoNC4xdjEuOGgtNi40djEuNWg2LjR2My44aC0yLjRsLS41LTIuM2gtMS43bC41IDIuM2gtMi44VjE1aDE1LjR2LTEuNWgtMi43bC40LTIuMnpNNTguNiAyLjFoMi42Vi40aC0xNXYxLjdINDl2NC42aC0zdjEuN2gzdjEuM2MtLjEgMi40LTIuMSAzLjctMi43IDMuOHYxLjhjLjEgMCA0LjQtLjkgNC41LTZ2LS45aDZ2Ni43aDEuOFY4LjRoMi44VjYuN2gtMi44VjIuMXptLTEuOCA0LjZoLTZWMi4xaDZ2NC42em0zMS43LTVoLjFjMS44IDEuNiA1LjEgMy4xIDcuNSAzLjZoLjJWMy42aC0uMWMtMi4zLS41LTUuMi0yLTYuOC0zLjZoLTEuNmMtMS42IDEuNi00LjQgMy02LjggMy42aC0uMXYxLjdoLjJjMi4zLS41IDUuNi0yIDcuNC0zLjZ6Ii8+PC9zdmc+"
+        alt="">
+    <script src="https://cdn.bootcss.com/lodash.js/4.17.4/lodash.min.js"></script>
+    <script src="../dist/StarsText.js"></script>
+    <script src="../dist/Wave.js"></script>
+    <script>
+        var starsText = new StarsText(document.getElementById('mycanvas'))
+        function show() {
+            starsText.animateContent('王')
+        }
+
+        function showimg() {
+            starsText.animateContent(document.getElementById('img'))
+        }
+
+        function wave() {
+            var wave = new Wave({
+                el: document.getElementById('mycanvas'),
+                speed: 4,
+                // time: 1,
+                waves: [{
+                    timeModifier: 1,
+                    lineWidth: 1,
+                    amplitude: 100,
+                    wavelength: 200,
+                    segmentLength: 20,
+                    strokeStyle: 'red'
+                }, {
+                    timeModifier: 1.2,
+                    lineWidth: 1,
+                    amplitude: 100,// 高度
+                    wavelength: 100,
+                    segmentLength: 20
+                }],
+
+                resizeEvent() {
+                    let gradient = this.ctx.createLinearGradient(0, 0, this.width, 0)
+                    gradient.addColorStop(0, 'rgba(255, 255, 255, 0)')
+                    gradient.addColorStop(0.5, 'rgba(255, 255, 255, 0.5)')
+                    gradient.addColorStop(1, 'rgba(255, 255, 255, 0)')
+                    // gradient.addColorStop(0, 'rgba(0, 0, 0, 0)')
+                    // gradient.addColorStop(0.5, 'rgba(255, 255, 255, 0.5)')
+                    // gradient.addColorStop(1, 'rgba(0, 0, 0, 0)')
+
+                    let index = -1
+                    let length = this.waves.length
+                    while (++index < length) {
+                        this.waves[index].strokeStyle = gradient
+                    }
+                }
+            })
+
+            setTimeout(() => {
+                wave.run()
+            }, 500)
+        }
+    </script>
+</body>
+
+</html>
