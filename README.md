@@ -1,5 +1,5 @@
 # 文字/图片 粒子 
-[!](./example/example.gif)
+![](example.gif)
 ```javascript   
  let wave = new Wave({
       el: document.getElementById('waves'),
